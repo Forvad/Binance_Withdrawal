@@ -1,9 +1,17 @@
 from random import randint, uniform
 from time import sleep
 import ccxt
+from tqdm import tqdm
+
 import config
 from ccxt.base.errors import InsufficientFunds
 from Logs.Loging import log
+
+
+def sleeping(from_sleep, to_sleep):
+    x = randint(from_sleep, to_sleep)
+    for _ in tqdm(range(x), desc='sleep ', bar_format='{desc}: {n_fmt}/{total_fmt}'):
+        sleep(1)
 
 
 def binance_withdraw(address):
@@ -48,8 +56,8 @@ def main():
     wallets = wallet()
     for address in wallets:
         binance_withdraw(address)
-        sleep(randint(config.Delay[0], config.Delay[1]))
+        sleeping(config.Delay[0], config.Delay[1])
 
 
 if __name__ == "__main__":
-    main()
+   main()
