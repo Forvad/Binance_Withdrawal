@@ -8,13 +8,13 @@ from ccxt.base.errors import InsufficientFunds
 from Logs.Loging import log
 
 
-def sleeping(from_sleep, to_sleep):
+def sleeping(from_sleep: int, to_sleep: int) -> None:
     x = randint(from_sleep, to_sleep)
     for _ in tqdm(range(x), desc='sleep ', bar_format='{desc}: {n_fmt}/{total_fmt}'):
         sleep(1)
 
 
-def binance_withdraw(address):
+def binance_withdraw(address: str) -> None:
     try:
         exchange = ccxt.binance({
             'apiKey': config.api_key,
@@ -52,7 +52,7 @@ def wallet() -> list:
         return wallets
 
 
-def main():
+def main() -> None:
     wallets = wallet()
     for address in wallets:
         binance_withdraw(address)
@@ -60,4 +60,4 @@ def main():
 
 
 if __name__ == "__main__":
-   main()
+    main()
