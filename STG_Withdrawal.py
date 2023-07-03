@@ -7,7 +7,7 @@ from Logs.Loging import log
 from ccxt.base.errors import InsufficientFunds
 from requests import get
 from ONE_converter import convert_eth_to_one
-from binance.spot import Spot
+# from binance.spot import Spot
 
 
 def get_prices(chain, address):
@@ -107,26 +107,26 @@ def work():
                 sleeping(Delay_STG[0], Delay_STG[1])
 
 
-def buy_token(token, value):
-    client = Spot(api_key=api_key_STG,
-                  api_secret=secret_key_STG)
-
-
-    # Get account and balance information
-    # dd = client.account()
-    # token = dd['balances']
-    # for i in token:
-    #     if i['asset'] in ['MATIC', 'USDT']:
-    #         print(i['free'])
-
-    params = {
-        'symbol': f'{token}USDT',
-        'side': 'BUY',
-        'type': 'MARKET',
-        'quantity': value,
-    }
-
-    response = client.new_order(**params)
+# def buy_token(token, value):
+#     client = Spot(api_key=api_key_STG,
+#                   api_secret=secret_key_STG)
+#
+#
+#     # Get account and balance information
+#     # dd = client.account()
+#     # token = dd['balances']
+#     # for i in token:
+#     #     if i['asset'] in ['MATIC', 'USDT']:
+#     #         print(i['free'])
+#
+#     params = {
+#         'symbol': f'{token}USDT',
+#         'side': 'BUY',
+#         'type': 'MARKET',
+#         'quantity': value,
+#     }
+#
+#     response = client.new_order(**params)
 
 
 if __name__ == '__main__':
