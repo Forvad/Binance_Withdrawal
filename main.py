@@ -32,7 +32,6 @@ def binance_withdraw(address: str) -> None:
             code=config.token,
             amount=value,
             address=address,
-            tag=None,
             params={
                 "network": config.ntwork
             }
