@@ -1,4 +1,5 @@
-ccxt==3.1.56
+ccxt==4.0.5
 loguru~=0.7.0
 tqdm~=4.65.0
-requests~=2.29.0
+requests==2.31.0
+binance-connector==3.1.1
