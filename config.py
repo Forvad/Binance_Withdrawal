@@ -13,9 +13,9 @@ Delay = [30, 60]  # задержка в сек
 randoms = 2  # 1 рандом целых чисел, 2 - с десятыми
 
 # STG module
-api_key_STG = "9Rj4ZIx4i16DOfz4FOFJNOBwQdELDuDLt4Gn45LukJKWBRsHJa4n1SDD1NKQeZRG"
+api_key_STG = ""
 
-secret_key_STG = "iVdLbySsqSBw0ufKJkWLRASVOrYkXIPph7EYokHb4ESQMQLFhnLXlcn9RNQ514uB"
+secret_key_STG = ""
 
 WITHDRAVAL_NATIVE = True  # вывод натива
 
