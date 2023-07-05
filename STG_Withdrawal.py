@@ -145,7 +145,7 @@ def get_balance():
     tokens = {}
     token = dd['balances']
     for i in token:
-        if i['asset'] in ['MATIC', 'USDT', 'USDC', 'BUSD', 'AVAX', 'ETH', 'BNB']:
+        if i['asset'] in ['MATIC', 'USDT', 'USDC', 'BUSD', 'AVAX', 'ETH', 'BNB', 'ONE', 'MOVR']:
             tokens[i['asset']] = float(i['free'])
     return tokens
 
