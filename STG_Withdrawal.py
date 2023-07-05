@@ -76,14 +76,14 @@ def binance_withdraw(address: str, token: str, network: str) -> None:
             value = round(value, 4)
             if token == 'ONE':
                 address = convert_eth_to_one(address)
-        # exchange.withdraw(
-        #     code=token,
-        #     amount=value,
-        #     address=address,
-        #     params={
-        #         "network": name_network[network]
-        #     }
-        # )
+        exchange.withdraw(
+            code=token,
+            amount=value,
+            address=address,
+            params={
+                "network": name_network[network]
+            }
+        )
         log(address).success(f'The output is successful token({token}), value({value})'
                              f', network({name_network[network]})')
 
