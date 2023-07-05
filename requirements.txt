@@ -3,3 +3,4 @@ loguru~=0.7.0
 tqdm~=4.65.0
 requests==2.31.0
 binance-connector==3.1.1
+
