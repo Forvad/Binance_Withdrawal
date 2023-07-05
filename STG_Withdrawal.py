@@ -76,14 +76,14 @@ def binance_withdraw(address: str, token: str, network: str) -> None:
             value = round(value, 4)
             if token == 'ONE':
                 address = convert_eth_to_one(address)
-        exchange.withdraw(
-            code=token,
-            amount=value,
-            address=address,
-            params={
-                "network": name_network[network]
-            }
-        )
+        # exchange.withdraw(
+        #     code=token,
+        #     amount=value,
+        #     address=address,
+        #     params={
+        #         "network": name_network[network]
+        #     }
+        # )
         log(address).success(f'The output is successful token({token}), value({value})'
                              f', network({name_network[network]})')
 
@@ -166,6 +166,8 @@ def auto_buy():
         if value > balance[name_native[network]]:
             if network in ['bsc', 'optimism', 'arbitrum']:
                 decimal = 3
+            elif network == 'harmony':
+                decimal = 1
             else:
                 decimal = 2
             coin = name_native[network]
