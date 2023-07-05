@@ -203,7 +203,7 @@ async def is_valid_address(address: str) -> bool:
     return True
 
 
-def convert_one_to_eth(addr: str) -> tuple[str, to_checksum_address] | tuple[str, str]:
+def convert_one_to_eth(addr: str):
     """
     Given a one address, convert it to hex checksum address
     """
