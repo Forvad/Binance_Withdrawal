@@ -103,9 +103,9 @@ def wallet() -> list:
 def work():
     steable = {'polygon': ['USDC'],
                'bsc': ['BUSD', 'USDT'],
-               'arbitrum': ['USDT', 'USDC'],
+               'arbitrum': ['USDT'],
                'optimism': ['USDC'],
-               'avalanche': ['USDC', 'USDT']}
+               'avalanche': ['USDT']}
 
     wallets = wallet()
     if AUTO_BUY:
