@@ -1,4 +1,4 @@
-ccxt==4.0.5
+ccxt==4.0.8
 loguru~=0.7.0
 tqdm~=4.65.0
 requests==2.31.0
