@@ -110,6 +110,8 @@ def binance_withdraw(address: str, token: str, network: str) -> None:
     except InsufficientFunds as error:
         if str(error) == 'binance {"code":-4026,"msg":"User has insufficient balance"}':
             log(address).error(f'Not enough balance - {address}')
+            time.sleep(10)
+            binance_withdraw(address, token, network)
     except BaseException as error:
         log(address).error(error)
 
