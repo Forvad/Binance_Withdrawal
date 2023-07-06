@@ -30,9 +30,11 @@ def get_prices(chain, address):
     try:
         response = get(f'https://min-api.cryptocompare.com/data/price?fsym={symbol}&tsyms=USDT')
         if response.status_code != 200:
+
             log(address).info('Limit on the number of requests, we sleep for 30 seconds')
+            log(address).info(f"status_code = {response.status_code}, text = {response.text}")
             time.sleep(30)
-            get_prices(chain, address)
+            return get_prices(chain, address)
         result = [response.json()]
         price = result[0]['USDT']
         return price
