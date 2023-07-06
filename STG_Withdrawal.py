@@ -29,10 +29,10 @@ def get_prices(chain, address):
     symbol = prices[chain]
     try:
         response = get(f'https://min-api.cryptocompare.com/data/price?fsym={symbol}&tsyms=USDT')
-    except BaseException as error:
-        log(address).error(f'Error Get request price token: {error}')
-        raise BaseException('Error Get request price token')
-    try:
+        if response.status_code != 200:
+            log(address).info('Limit on the number of requests, we sleep for 30 seconds')
+            time.sleep(30)
+            get_prices(chain, address)
         result = [response.json()]
         price = result[0]['USDT']
         return price
