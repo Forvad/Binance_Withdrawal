@@ -21,6 +21,25 @@ name_native = {'bsc': 'BNB',
                'harmony': 'ONE',
                }
 
+#
+# def get_prices(chain, address):
+#     prices = {'arbitrum': 'ETH', 'optimism': 'ETH', 'avalanche': 'AVAX', 'polygon': 'MATIC',
+#               'btc': 'BTC', 'metis': 'METIS', 'bsc': 'BNB', 'harmony': 'ONE', 'coredao': 'CORE',
+#               'moonriver': 'MOVR', 'fantom': 'FTM'}
+#     symbol = prices[chain]
+#     try:
+#         response = get(f'https://min-api.cryptocompare.com/data/price?fsym={symbol}&tsyms=USDT')
+#         if response.status_code != 200:
+#             log(address).info('Limit on the number of requests, we sleep for 30 seconds')
+#             log(address).info(f"status_code = {response.status_code}, text = {response.text}")
+#             time.sleep(30)
+#             return get_prices(chain, address)
+#         result = [response.json()]
+#         price = result[0]['USDT']
+#         return price
+#     except BaseException as error:
+#         log(address).error(error)
+
 
 def get_prices(chain, address):
     prices = {'arbitrum': 'ETH', 'optimism': 'ETH', 'avalanche': 'AVAX', 'polygon': 'MATIC',
@@ -28,15 +47,14 @@ def get_prices(chain, address):
               'moonriver': 'MOVR', 'fantom': 'FTM'}
     symbol = prices[chain]
     try:
-        response = get(f'https://min-api.cryptocompare.com/data/price?fsym={symbol}&tsyms=USDT')
+        response = get(f'https://api.binance.com/api/v3/ticker/price?symbol={symbol}USDT')
         if response.status_code != 200:
-
             log(address).info('Limit on the number of requests, we sleep for 30 seconds')
             log(address).info(f"status_code = {response.status_code}, text = {response.text}")
             time.sleep(30)
             return get_prices(chain, address)
-        result = [response.json()]
-        price = result[0]['USDT']
+        result = response.json()
+        price = round(float(result['price']), 4)
         return price
     except BaseException as error:
         log(address).error(error)
@@ -162,7 +180,7 @@ def auto_buy():
             balance = get_balance()
             time.sleep(1)
             if ETH_dabl:
-                value = value_native[1] * wallets_all / get_prices(network, " ") * 2
+                value = value_native[1] * wallets_all / get_prices(network, "binance") * 2
                 ETH_dabl = False
 
         if value > balance[name_native[network]]:
