@@ -19,6 +19,7 @@ name_native = {'bsc': 'BNB',
                'arbitrum': 'ETH',
                'moonriver': 'MOVR',
                'harmony': 'ONE',
+               "fantom": "FTM"
                }
 
 #
@@ -68,6 +69,7 @@ def binance_withdraw(address: str, token: str, network: str) -> None:
                     'arbitrum': 'ARBITRUM',
                     'moonriver': 'MOVR',
                     'harmony': 'ONE',
+                    'fantom': "FTM"
                     }
     try:
         exchange = ccxt.binance({
@@ -85,7 +87,7 @@ def binance_withdraw(address: str, token: str, network: str) -> None:
                 if balance[token] < value:
                     amount = value - balance[token]
                     amount = amount if amount >= 11 else 11
-                    buy_token(token, amount)
+                    buy_token(token, int(amount))
                     log("binance").success(f"buy {amount} {token}")
                     time.sleep(3)
 
@@ -167,7 +169,7 @@ def get_balance():
     tokens = {}
     token = dd['balances']
     for i in token:
-        if i['asset'] in ['MATIC', 'USDT', 'USDC', 'BUSD', 'AVAX', 'ETH', 'BNB', 'ONE', 'MOVR']:
+        if i['asset'] in ['MATIC', 'USDT', 'USDC', 'BUSD', 'AVAX', 'ETH', 'BNB', 'ONE', 'MOVR', "FTM"]:
             tokens[i['asset']] = float(i['free'])
     return tokens
 
@@ -188,8 +190,8 @@ def auto_buy():
         if value > balance[name_native[network]]:
             if network in ['bsc', 'optimism', 'arbitrum']:
                 decimal = 3
-            elif network == 'harmony':
-                decimal = 1
+            elif network in ['harmony', "fantom"]:
+                decimal = 0
             else:
                 decimal = 2
             coin = name_native[network]
@@ -197,7 +199,7 @@ def auto_buy():
             min_limit = round(12 / get_prices(network, "binance"), decimal)
             if value_coin < min_limit:
                 value_coin = min_limit
-
+            log("").info(f"{coin, value_coin}")
             buy_token(coin, value_coin)
             log("binance").success(f"buy {value_coin} {coin}")
             time.sleep(5)
