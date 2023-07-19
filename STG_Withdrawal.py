@@ -129,7 +129,8 @@ def work():
                'bsc': ['BUSD', 'USDT'],
                'arbitrum': ['USDT'],
                'optimism': ['USDC'],
-               'avalanche': ['USDT']}
+               'avalanche': ['USDT'],
+               "fantom": ["USDT"]}
 
     wallets = wallet()
     if AUTO_BUY:
