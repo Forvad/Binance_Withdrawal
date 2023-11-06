@@ -3,7 +3,7 @@ import time
 import ccxt
 from main import sleeping
 from config import network_steable, network_native, api_key_STG, secret_key_STG, value_steable, value_native,\
-    WITHDRAVAL_NATIVE, WITHDRAVAL_STEABLE, Delay_STG, AUTO_BUY
+    WITHDRAVAL_NATIVE, WITHDRAVAL_STEABLE, Delay_STG, AUTO_BUY, steable
 from random import choice, randint, uniform
 from Logs.Loging import log
 from ccxt.base.errors import InsufficientFunds
@@ -125,13 +125,6 @@ def wallet() -> list:
 
 
 def work():
-    steable = {'polygon': ['USDC'],
-               'bsc': ['BUSD', 'USDT'],
-               'arbitrum': ['USDT'],
-               'optimism': ['USDC'],
-               'avalanche': ['USDT'],
-               "fantom": ["USDT"]}
-
     wallets = wallet()
     if AUTO_BUY:
         auto_buy()

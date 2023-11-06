@@ -22,19 +22,26 @@ secret_key_STG = ""
 
 WITHDRAVAL_NATIVE = True  # вывод натива
 
-WITHDRAVAL_STEABLE = True  # вывод стейбла
+WITHDRAVAL_STEABLE = False  # вывод стейбла
 
 AUTO_BUY = True  # Авто докупка монет, за USDT
 
+steable = {'polygon': ['USDT'],
+           'bsc': ['USDT'],
+           'arbitrum': ['USDT'],
+           'optimism': ['USDT'],
+           'avalanche': ['USDT'],
+           "fantom": ["USDT"]}
+
 # Сети вывода нейтива 'polygon', 'avalanche', 'optimism', 'arbitrum', 'bsc'
-network_steable = ['polygon']  # Выбор 1 рандом сети для вывода стейбла
+network_steable = ['avalanche']  # Выбор 1 рандом сети для вывода стейбла
 
 # Сети вывода нейтива 'polygon', 'avalanche', 'optimism', 'arbitrum', 'bsc', 'harmony', 'moonriver'
 # Раскидывает во все выбранные сети нейтив
-network_native = ['avalanche']
+network_native = ['fantom']
 
 value_steable = [1, 3]  # Объём вывода мин - мах стейбла
 
-value_native = [1, 2]  # Объём вывода мин - мах нейтива в $
+value_native = [3.5, 4]  # Объём вывода мин - мах нейтива в $
 
 Delay_STG = [30, 60]  # задержка в сек
